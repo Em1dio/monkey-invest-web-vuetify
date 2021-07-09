@@ -1,77 +1,136 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
+  <div>
+    <v-card :loading="loadingWallets" flat>
+      <v-card-text>
+        <v-row>
+          <v-col
+            v-for="(item, index) in wallets"
+            :key="index + '_wallet'"
+            cols="12"
+            xs="6"
+            md="4"
+            lg="3"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
+            <monkey-pack-wallets-dashboard
+              :name="item.name"
+              :active="item._id == activeWallet"
+              :id="item._id"
+              :before="item.totalBefore"
+              :now="item.totalActual"
+              @click="setActiveWallets(item._id)"
+            ></monkey-pack-wallets-dashboard>
+          </v-col>
+        </v-row>
+        <v-row v-if="loadingWallets">
+          <v-col
+            v-for="(item, index) in 5"
+            :key="index + '_walletload'"
+            cols="12"
+            xs="6"
+            md="4"
+            lg="3"
           >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+            <v-skeleton-loader
+              type="table-heading, list-item-two-line"
+            ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+    <v-card flat :disabled="!activeWallet" :loading="loadingStocks">
+      <v-card-title primary-title>
+        {{ $t('Stocks Consolidated') }}
+      </v-card-title>
+      <v-card-text>
+        <monkey-pack-wallet-content :item="stocks"></monkey-pack-wallet-content>
+      </v-card-text>
+    </v-card>
+    <v-card flat :disabled="!activeWallet" :loading="loadingCrypto">
+      <v-card-title primary-title>
+        {{ $t('Crypto Consolidated') }}
+      </v-card-title>
+      <v-card-text>
+        <monkey-pack-wallet-content :item="crypto"></monkey-pack-wallet-content>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
+<script>
+export default {
+  middleware: 'auth',
+  layout: 'admin',
+  data() {
+    return {
+      loadingWallets: false,
+      loadingStocks: false,
+      loadingCrypto: false,
+    }
+  },
+  mounted() {
+    this.getWallets()
+  },
+  computed: {
+    wallets() {
+      return this.$store.state.wallet.wallets
+    },
+    activeWallet() {
+      return this.$store.state.wallet.activeWallet
+    },
+    stocks() {
+      return this.$store.state.stocks.stocks
+    },
+    crypto() {
+      return this.$store.state.crypto.crypto
+    },
+  },
+  methods: {
+    getWallets() {
+      this.loadingWallets = true
+      this.$store.dispatch('wallet/getWallets', {}).then(
+        () => {
+          this.loadingWallets = false
+          this.getReadStockConsolidated()
+          this.getReadCryptoConsolidated()
+        },
+        (e) => {
+          this.loadingWallets = false
+        }
+      )
+    },
+    getReadStockConsolidated(wallet) {
+      if (!wallet) {
+        wallet = this.activeWallet
+      }
+      this.loadingStocks = true
+      this.$store.dispatch('stocks/getReadStockConsolidated', { wallet }).then(
+        () => {
+          this.loadingStocks = false
+        },
+        () => {
+          this.loadingStocks = false
+        }
+      )
+      //
+    },
+    getReadCryptoConsolidated(wallet) {
+      if (!wallet) {
+        wallet = this.activeWallet
+      }
+      this.loadingCrypto = true
+      this.$store.dispatch('crypto/getReadCryptoConsolidated', { wallet }).then(
+        () => {
+          this.loadingCrypto = false
+        },
+        () => {
+          this.loadingCrypto = false
+        }
+      )
+    },
+    setActiveWallets(id) {
+      this.$store.dispatch('wallet/setActiveWallet', id)
+      this.getReadStockConsolidated(id)
+      this.getReadCryptoConsolidated(id)
+    },
+  },
+}
+</script>
