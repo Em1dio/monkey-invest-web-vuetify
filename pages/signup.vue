@@ -152,6 +152,7 @@ export default {
       return errors
     },
   },
+  mounted() {},
   methods: {
     async userAuth() {
       this.$v.$touch()
@@ -159,10 +160,23 @@ export default {
         return
       }
       try {
-        let response = await this.$auth.authWith('local', { data: this.auth })
-        console.log(response)
-      } catch (err) {
-        console.log(err)
+        await this.$store.dispatch('user/signup', this.auth)
+        await this.$auth.loginWith('local', { data: this.auth })
+      } catch (e) {
+        const err = e.response
+        if (err.status === 400) {
+          this.$nuxt.error({ statusCode: 400, message: err.data.message })
+        }
+        if (err.status === 404) {
+          this.$nuxt.error({ statusCode: 404, message: this.$t('not found') })
+        } else if (err.status === 500) {
+          this.$nuxt.error({
+            statusCode: 500,
+            message: this.$t('Internal Server Error'),
+          })
+        } else {
+          this.$nuxt.error({ statusCode: err.status, message: 'Error' })
+        }
       }
     },
   },
