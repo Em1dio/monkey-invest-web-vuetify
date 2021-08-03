@@ -23,6 +23,9 @@ export default {
   Earn: 'Ganho',
   Owner: 'Dono',
   Actions: 'Ações',
+  // Wallets
+  Public: 'Público',
+  Private: 'Privado',
   // Stocks
   Stock: 'Ação',
   Symbol: 'Símbolo',
