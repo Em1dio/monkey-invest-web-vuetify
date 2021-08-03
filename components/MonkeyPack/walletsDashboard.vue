@@ -200,7 +200,7 @@ export default {
 }
 
 .value-positive {
-  background: #36f1cd;
+  background: #4caf50;
   color: rgb(21, 71, 55);
 }
 
@@ -218,7 +218,7 @@ export default {
 }
 
 .positive {
-  color: #36f1cd;
+  color: #4caf50;
 }
 
 .negative {

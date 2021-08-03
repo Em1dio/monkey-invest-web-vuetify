@@ -59,7 +59,7 @@
           <v-btn @click="onAddStocks" fab dark small color="green">
             <v-icon>mdi-currency-usd</v-icon>
           </v-btn>
-          <v-btn fab dark small color="grey">
+          <v-btn  @click="onAddCryptos" fab dark small color="grey">
             <v-icon>mdi-bitcoin</v-icon>
           </v-btn>
           <v-btn @click="onAddWallet" fab dark small color="grey">
@@ -68,6 +68,7 @@
         </v-speed-dial>
         <Nuxt />
         <MonkeyPackWalletDialog></MonkeyPackWalletDialog>
+        <MonkeyPackCryptosDialog></MonkeyPackCryptosDialog>
         <MonkeyPackStocksDialog></MonkeyPackStocksDialog>
       </v-container>
     </v-main>
@@ -141,6 +142,9 @@ export default {
     },
     onAddStocks() {
       this.$nuxt.$emit('stock-add')
+    },
+    onAddCryptos() {
+      this.$nuxt.$emit('crypto-add')
     },
     setActiveWallets(id) {
       this.$store.dispatch('wallet/setActiveWallet', id)
