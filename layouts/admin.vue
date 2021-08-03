@@ -8,7 +8,7 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          :to="item.to"
+          :to="localePath(item.to)"
           router
           exact
         >
@@ -43,6 +43,24 @@
         </v-menu>
       </v-toolbar-title>
       <v-spacer />
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            <v-icon>mdi-translate</v-icon>
+            {{ $i18n.locale }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in availableLocales"
+            :key="index + '_lang'"
+            @click="() => $i18n.setLocale(item.code)"
+          >
+            <v-list-item-title>{{ item.label }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
       <v-btn icon @click.stop="onLogout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
@@ -66,6 +84,7 @@
             <v-icon>mdi-wallet-outline</v-icon>
           </v-btn>
         </v-speed-dial>
+
         <Nuxt />
         <MonkeyPackWalletDialog></MonkeyPackWalletDialog>
         <MonkeyPackCryptosDialog></MonkeyPackCryptosDialog>
@@ -97,6 +116,9 @@ export default {
     })
   },
   computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
+    },
     wallets() {
       return this.$store.state.wallet.wallets
     },

@@ -71,10 +71,12 @@ export default {
     locales: [
       {
         code: 'en',
+        label: 'en-Us',
         file: 'en-US.js',
       },
       {
         code: 'pt',
+        label: 'pt-BR',
         file: 'pt-BR.js',
       },
     ],
