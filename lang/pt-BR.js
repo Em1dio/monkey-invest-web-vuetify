@@ -11,4 +11,31 @@ export default {
   '_ must have at least _ letters.': '{0} deve ter pelo menos {1} letras.',
   'Passwords must be identical.': 'As senhas devem ser idênticas.',
   Dashboard: 'Painel',
+  Wallets: 'Carteiras',
+  Stocks: 'Ações',
+  CryptoCoins: 'CryptoMoedas',
+  Settings: 'Configurações',
+  Price: 'Preço',
+  Date: 'Data',
+  "Purchase Value": 'Valor de Compra',
+  "Actual Value": 'Valor Atual',
+  "Total Actual": 'Total Atual',
+  Earn: 'Ganho',
+  Owner: 'Dono',
+  Actions: 'Ações',
+  // Wallets
+  Public: 'Público',
+  Private: 'Privado',
+  // Stocks
+  Stock: 'Ação',
+  Symbol: 'Símbolo',
+  Quantity: 'Quantidade',
+  Stock_Exchange: 'Exchange de Ações',
+  // Settings
+  Language: 'Idioma',
+  Currency: 'Moeda',
+  Invested: 'Investido',
+  // Painel
+  'Stocks Consolidated': 'Ações Consolidadas',
+  'Crypto Consolidated': 'Cryptomoedas Consolidadas',
 }

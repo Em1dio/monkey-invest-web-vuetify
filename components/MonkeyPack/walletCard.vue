@@ -72,7 +72,7 @@ export default {
 </script>
 <style scoped>
 .positive {
-  color: #36f1cd;
+  color: #4caf50;
 }
 
 .negative {

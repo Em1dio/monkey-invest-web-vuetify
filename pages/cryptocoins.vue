@@ -9,6 +9,7 @@
               v-model="search.q"
               append-outer-icon="mdi-magnify"
               @click:append-outer="getSearch"
+              @input="getSearch"
             ></v-text-field>
           </v-card-actions>
         </v-card>
@@ -63,23 +64,23 @@ export default {
   data() {
     return {
       headers: [
-        { text: this.$t('Symbol'), value: 'symbol', sortable: true },
-        { text: this.$t('Quantity'), value: 'quantity', sortable: true },
-        { text: this.$t('Purchase Value'), value: 'value', sortable: true },
-        { text: this.$t('Total'), value: 'total', sortable: true },
+        { text: this.$t('Cryptos'), value: 'symbol', sortable: false },
+        { text: this.$t('Quantity'), value: 'quantity', sortable: false },
+        { text: this.$t('Purchase Value'), value: 'value', sortable: false },
+        { text: this.$t('Total'), value: 'total', sortable: false },
         {
           text: this.$t('Actual Value'),
           value: 'actualValue',
-          sortable: true,
+          sortable: false,
         },
         {
           text: this.$t('Total Actual'),
           value: 'totalActual',
-          sortable: true,
+          sortable: false,
         },
-        { text: this.$t('Earn'), value: 'earn', sortable: true },
-        { text: '%', value: 'p', sortable: true },
-        { text: this.$t('Owner'), value: 'owner', sortable: true },
+        { text: this.$t('Earn'), value: 'earn', sortable: false },
+        { text: '%', value: 'p', sortable: false },
+        { text: this.$t('Owner'), value: 'owner', sortable: false },
         { text: this.$t('Actions'), value: 'actions', sortable: false },
       ],
 
@@ -98,7 +99,7 @@ export default {
       return this.$store.state.wallet.activeWallet
     },
     items() {
-      return this.$store.state.stocks.items
+      return this.$store.state.crypto.items
     },
   },
   watch: {
@@ -122,7 +123,7 @@ export default {
         this.search
       )
       this.loading = true
-      this.$store.dispatch('stocks/getResults', params).then(
+      this.$store.dispatch('crypto/getResults', params).then(
         ({ data }) => {
           this.loading = false
         },
