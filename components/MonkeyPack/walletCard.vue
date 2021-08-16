@@ -28,13 +28,15 @@
           <v-divider inset></v-divider>
           <v-list-item>
             <v-list-item-icon>
-              <v-icon color="red"> mdi-lock </v-icon>
+              <v-icon :color="item.isPublic ? 'green' : 'red'">
+                {{ item.isPublic ? 'mdi-lock-open' : 'mdi-lock' }}
+              </v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{
                 $t(item.isPublic ? 'Public' : 'Private')
               }}</v-list-item-title>
-              <v-list-item-subtitle>{{ $t('Acl') }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{$t('Number of Shared Users:') }} {{ item.sharedUsers.length}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-list>

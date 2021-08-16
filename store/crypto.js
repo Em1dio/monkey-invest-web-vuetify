@@ -1,4 +1,5 @@
 export const state = () => ({
+  cryptocoins: [],
   items: [],
   crypto: {
     totalBefore: 0,
@@ -8,6 +9,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setCryptos(state, data) {
+    state.cryptocoins = data
+  },
   setReadCryptoConsolidated(state, data) {
     state.crypto = data
   },
@@ -35,6 +39,15 @@ export const actions = {
     )
     response.then(({ data }) => {
       commit('setReadCryptoConsolidated', data)
+    })
+    return response
+  },
+  getCryptos({ commit }) {
+    const response = this.$axios.get(
+      `/cryptocoins/get-crypto`,
+    )
+    response.then(({ data }) => {
+      commit('setCryptos', data)
     })
     return response
   },

@@ -120,10 +120,12 @@ export default {
       isEdit: false,
       loading: false,
       item: defaultItem(),
-      options: ['BTC', 'ETH', 'XRP', 'LTC'],
+      options: this.$store.state.crypto.cryptocoins,
     }
   },
   mounted() {
+    this.$store.dispatch('crypto/getCryptos');
+    
     this.$nuxt.$on('crypto-edit', (item) => {
       this.isEdit = true
       this.dialog = true
