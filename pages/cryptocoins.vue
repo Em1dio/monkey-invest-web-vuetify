@@ -137,7 +137,7 @@ export default {
       this.getResults()
     },
     onEdit(item) {
-      this.$nuxt.$emit('stock-edit', item)
+      this.$nuxt.$emit('crypto-edit', item)
     },
   },
 }

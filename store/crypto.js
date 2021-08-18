@@ -55,7 +55,27 @@ export const actions = {
     const response = this.$axios.post(`/cryptocoins`, data)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
-      dispatch('getReadStockConsolidated', { wallet: data.walletId })
+      dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
+    })
+    return response
+  },
+  update({ commit, dispatch }, data) {
+    const response = this.$axios.put(
+      `/cryptocoins/${data.walletId}/${data._id}`,
+      data
+    )
+    response.then(({ data }) => {
+      dispatch('getResults', { wallet: data.walletId })
+      dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
+    })
+    return response
+  },
+  delete({ commit, dispatch }, data) {
+    console.log("x");
+    const response = this.$axios.delete(`/cryptocoins/${data.walletId}/${data._id}`)
+    response.then(({ data }) => {
+      dispatch('getResults', { wallet: data.walletId })
+      dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
     })
     return response
   },

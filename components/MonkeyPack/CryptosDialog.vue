@@ -22,14 +22,6 @@
                   @input="$v.item.symbol.$touch()"
                   @blur="$v.item.symbol.$touch()"
                 ></v-combobox>
-                <!-- <v-text-field
-                  :label="$t('Cryptocoin')"
-                  required
-                  v-model="item.symbol"
-                  :error-messages="inputSymbolErrors"
-                  @input="$v.item.symbol.$touch()"
-                  @blur="$v.item.symbol.$touch()"
-                ></v-text-field> -->
               </v-col>
               <v-col cols="12" sm="6" md="4">
                 <v-text-field
@@ -69,7 +61,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn v-if="isEdit" color="red darken-1" text @click="onExcluir">
-            {{ $t('Excluir') }}
+            {{ $t('Delete') }}
           </v-btn>
           <v-spacer></v-spacer>
 
