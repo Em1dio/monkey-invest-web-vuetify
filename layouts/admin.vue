@@ -88,6 +88,7 @@
         <Nuxt />
         <MonkeyPackWalletDialog></MonkeyPackWalletDialog>
         <MonkeyPackCryptosDialog></MonkeyPackCryptosDialog>
+        <MonkeyPackCryptosTransfer></MonkeyPackCryptosTransfer>
         <MonkeyPackStocksDialog></MonkeyPackStocksDialog>
       </v-container>
     </v-main>

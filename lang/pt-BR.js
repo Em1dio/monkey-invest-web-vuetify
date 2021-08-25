@@ -12,6 +12,7 @@ export default {
   'Passwords must be identical.': 'As senhas devem ser idênticas.',
   Dashboard: 'Painel',
   Wallets: 'Carteiras',
+  Wallet: 'Carteira',
   Stocks: 'Ações',
   CryptoCoins: 'CryptoMoedas',
   Settings: 'Configurações',
@@ -26,6 +27,7 @@ export default {
   // Wallets
   Public: 'Público',
   Private: 'Privado',
+  "Number of Shared Users:": "Número de Usuários Compartilhados:",
   // Stocks
   Stock: 'Ação',
   Symbol: 'Símbolo',
