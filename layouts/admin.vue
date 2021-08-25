@@ -90,6 +90,7 @@
         <MonkeyPackCryptosDialog></MonkeyPackCryptosDialog>
         <MonkeyPackCryptosTransfer></MonkeyPackCryptosTransfer>
         <MonkeyPackStocksDialog></MonkeyPackStocksDialog>
+        <MonkeyPackStocksTransfer></MonkeyPackStocksTransfer>
       </v-container>
     </v-main>
   </v-app>

@@ -48,6 +48,9 @@
                 <v-list-item @click="onEdit(item)">
                   <v-list-item-title>{{ $t('Edit') }}</v-list-item-title>
                 </v-list-item>
+                <v-list-item @click="onTransfer(item)">
+                  <v-list-item-title>{{ $t('Transfer') }}</v-list-item-title>
+                </v-list-item>
               </v-list>
             </v-menu>
           </template>
@@ -137,6 +140,9 @@ export default {
     },
     onEdit(item) {
       this.$nuxt.$emit('stock-edit', item)
+    },
+    onTransfer(item) {
+      this.$nuxt.$emit('stock-transfer', item)
     },
   },
 }

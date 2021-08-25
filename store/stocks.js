@@ -34,6 +34,14 @@ export const actions = {
     })
     return response
   },
+  transfer({ commit, dispatch }, data) {
+    const response = this.$axios.post(`stocks/transfer/${data.id}`, data)
+    response.then(({ data }) => {
+      dispatch('getResults', { wallet: data.walletId })
+      dispatch('getReadStockConsolidated', { wallet: data.walletId })
+    })
+    return response
+  },
   update({ commit, dispatch }, data) {
     const response = this.$axios.put(
       `/stocks/${data.walletId}/${data._id}`,
