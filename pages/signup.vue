@@ -160,7 +160,6 @@ export default {
         return
       }
       try {
-        // console.log(this.auth);
         await this.$store.dispatch('user/signup', this.auth)
         await this.$auth.loginWith('local', { data: this.auth })
       } catch (e) {

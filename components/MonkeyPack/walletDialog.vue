@@ -38,7 +38,7 @@
           </v-btn>
           <v-spacer></v-spacer>
 
-          <v-btn color="blue darken-1" text @click="onSave"> Save </v-btn>
+          <v-btn color="blue darken-1" text @click="onSave">  {{ $t('Save') }} </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

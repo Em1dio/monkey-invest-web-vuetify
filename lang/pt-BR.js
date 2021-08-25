@@ -10,6 +10,7 @@ export default {
   '_ is required.': '{0} é obrigatório.',
   '_ must have at least _ letters.': '{0} deve ter pelo menos {1} letras.',
   'Passwords must be identical.': 'As senhas devem ser idênticas.',
+  'Transfer CryptoCoin': 'Transferir CryptoCoin',
   Dashboard: 'Painel',
   Wallets: 'Carteiras',
   Wallet: 'Carteira',
@@ -25,6 +26,8 @@ export default {
   Owner: 'Dono',
   Actions: 'Ações',
   Edit: 'Editar',
+  Cancel: 'Cancelar',
+  Save: 'Salvar',
   Transfer: 'Transferir',
   // Wallets
   Public: 'Público',

@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card :disabled="loading" :loading="loading">
         <v-card-title>
-          <span class="text-h5">{{ $t('Transfer CryptoCoin') }}</span>
+          <span class="text-h5">{{ $t('Stocks') }}</span>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="onClose">
             <v-icon>mdi-close</v-icon>
@@ -27,7 +27,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="red darken-1" text @click="onClose">
+          <v-btn v-if="isEdit" color="red darken-1" text @click="onClose">
             {{ $t('Cancel') }}
           </v-btn>
           <v-spacer></v-spacer>
@@ -82,13 +82,10 @@ export default {
       isEdit: false,
       loading: false,
       item: defaultItem(),
-      options: this.$store.state.crypto.cryptocoins,
     }
   },
   mounted() {
-    this.$store.dispatch('crypto/getCryptos')
-
-    this.$nuxt.$on('crypto-transfer', (item) => {
+    this.$nuxt.$on('stock-transfer', (item) => {
       this.dialog = true
       this.loading = false
       this.item = JSON.parse(JSON.stringify(item)) // clear
@@ -131,7 +128,7 @@ export default {
   methods: {
     onTransfer(data) {
       this.loading = true
-      this.$store.dispatch('crypto/transfer', data).then(
+      this.$store.dispatch('stocks/transfer', data).then(
         () => {
           this.loading = false
           this.onClose()

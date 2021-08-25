@@ -16,7 +16,6 @@ export const mutations = {
 }
 
 export const actions = {
-  //
   getWallets({ commit }, params = {}) {
     const response = this.$axios.get(`/wallets`, {
       params,
