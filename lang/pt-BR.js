@@ -24,6 +24,8 @@ export default {
   Earn: 'Ganho',
   Owner: 'Dono',
   Actions: 'Ações',
+  Edit: 'Editar',
+  Transfer: 'Transferir',
   // Wallets
   Public: 'Público',
   Private: 'Privado',
