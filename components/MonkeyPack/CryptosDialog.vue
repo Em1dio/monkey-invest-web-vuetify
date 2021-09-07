@@ -160,7 +160,7 @@ export default {
       return errors
     },
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
   },
   methods: {
@@ -202,7 +202,7 @@ export default {
       this.dialog = false
     },
     onSave() {
-      this.item.walletId = this.activeWallet
+      this.item.walletId = this.activeWalletId
       this.loading = true
       if (this.isEdit) {
         this.update()

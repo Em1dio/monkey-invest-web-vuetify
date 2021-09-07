@@ -4,7 +4,7 @@
       <v-card
         :elevation="hover ? 12 : 0"
         outlined
-        @click="$emit('click', item._id)"
+        @click="openDialog(item._id)"
       >
         <v-card-title primary-title>
           {{ item.name }}
@@ -36,7 +36,10 @@
               <v-list-item-title>{{
                 $t(item.isPublic ? 'Public' : 'Private')
               }}</v-list-item-title>
-              <v-list-item-subtitle>{{$t('Number of Shared Users:') }} {{ item.sharedUsers.length}}</v-list-item-subtitle>
+              <v-list-item-subtitle
+                >{{ $t('Number of Shared Users:') }}
+                {{ item.sharedUsers.length }}</v-list-item-subtitle
+              >
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -68,6 +71,12 @@ export default {
         this.item.totalBefore,
         this.item.totalActual
       )
+    },
+  },
+  methods: {
+    openDialog(id) {
+      this.$store.dispatch('wallet/setActiveWallet', id)
+      this.$emit('click', id)
     },
   },
 }

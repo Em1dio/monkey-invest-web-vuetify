@@ -1,18 +1,26 @@
 export const state = () => ({
-  activeWallet: null,
+  activeWalletId: null,
+  activeWallet: {},
   wallets: [],
 })
 
 export const mutations = {
   setWallets(state, data) {
-    if (state.activeWallet == null && data.length > 0) {
-      state.activeWallet = data[0]?._id
+    if (state.activeWalletId == null && data.length > 0) {
+      state.activeWalletId = data[0]?._id
     }
     state.wallets = data
   },
   setActiveWallet(state, id) {
-    state.activeWallet = id
+    state.activeWalletId = id
+    state.activeWallet = state.wallets.find(wallet => wallet._id === id)
   },
+  setNewSharedUser(state, email) {
+    state.activeWallet.sharedUsers.push(email)
+  },
+  removeSharedUser(state, email) {
+    state.activeWallet.sharedUsers = state.activeWallet.sharedUsers.filter(x => x != email)
+  }
 }
 
 export const actions = {
@@ -50,5 +58,13 @@ export const actions = {
 
   setActiveWallet({ commit }, id) {
     commit('setActiveWallet', id)
+  },
+
+  setNewSharedUser({ commit }, email) {
+    commit('setNewSharedUser', email)
+  },
+
+  removeSharedUser({ commit }, email) {
+    commit('removeSharedUser', email)
   },
 }

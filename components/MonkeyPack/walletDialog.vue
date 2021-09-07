@@ -29,6 +29,9 @@
                   :label="$t(item.isPublic ? 'Public' : 'Private')"
                 ></v-switch>
               </v-col>
+              <v-col cols="12" sm="12" md="12">
+                <MonkeyPackWalletSharedAccounts min-height="0vh" />
+              </v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -38,7 +41,9 @@
           </v-btn>
           <v-spacer></v-spacer>
 
-          <v-btn color="blue darken-1" text @click="onSave">  {{ $t('Save') }} </v-btn>
+          <v-btn color="blue darken-1" text @click="onSave">
+            {{ $t('Save') }}
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -53,6 +58,7 @@ const defaultItem = (item = {}) =>
       _id: null,
       name: null,
       isPublic: false,
+      sharedUsers: [],
     },
     item
   )
@@ -100,6 +106,9 @@ export default {
         errors.push(this.$t('_ is required.', [this.$t('Name')]))
       return errors
     },
+    walletObj() {
+      return this.$store.state.wallet.activeWallet
+    },
   },
   methods: {
     create() {
@@ -114,6 +123,7 @@ export default {
       )
     },
     update() {
+      this.item.sharedUsers = this.walletObj.sharedUsers
       this.$store.dispatch('wallet/update', this.item).then(
         () => {
           this.loading = false
