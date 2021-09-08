@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     currently() {
-      return this.now - this.before
+      return this.now
     },
     percent() {
       return this.$util.calcPercent(this.before, this.now)
