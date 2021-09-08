@@ -125,7 +125,7 @@ export default {
       return this.$store.state.wallet.wallets
     },
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
     labelWallet() {
       return this.wallets.find((v) => v._id == this.activeWallet)?.name

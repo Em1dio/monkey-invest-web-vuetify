@@ -98,7 +98,7 @@ export default {
   },
   computed: {
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
     items() {
       return this.$store.state.stocks.items

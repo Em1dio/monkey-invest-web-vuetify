@@ -74,7 +74,7 @@ export default {
       return this.$store.state.wallet.wallets
     },
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
     stocks() {
       return this.$store.state.stocks.stocks

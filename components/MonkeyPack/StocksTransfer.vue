@@ -119,7 +119,7 @@ export default {
       return errors
     },
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
     wallets() {
       return this.$store.state.wallet.wallets
@@ -148,10 +148,10 @@ export default {
       const data = {
         id: this.item._id,
         walletTo: walletTo._id,
-        walletFrom: this.activeWallet,
+        walletFrom: this.activeWalletId,
       }
 
-      if (walletTo._id === this.activeWallet) {
+      if (walletTo._id === this.activeWalletId) {
         return this.onClose()
       }
       this.loading = true

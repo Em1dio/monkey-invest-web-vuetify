@@ -156,7 +156,7 @@ export default {
       return errors
     },
     activeWallet() {
-      return this.$store.state.wallet.activeWallet
+      return this.$store.state.wallet.activeWalletId
     },
   },
   methods: {
