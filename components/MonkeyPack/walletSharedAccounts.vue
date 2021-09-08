@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <v-app id="inspire">
       <v-data-table
         :headers="headers"
         :items="sharedUsers"
@@ -9,7 +8,7 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-dialog v-model="dialog" max-width="400px" min-height="0vh">
+            <v-dialog v-model="dialog" max-width="400px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   color="primary"
@@ -74,7 +73,6 @@
           <v-btn color="primary" @click="initialize"> {{ $t('Load') }} </v-btn>
         </template>
       </v-data-table>
-    </v-app>
   </div>
 </template>
 

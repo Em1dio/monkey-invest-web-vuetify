@@ -198,7 +198,7 @@ export default {
       this.dialog = false
     },
     onSave() {
-      this.item.walletId = this.activeWalletId
+      this.item.walletId = this.activeWallet
       this.loading = true
       if (this.isEdit) {
         this.update()
