@@ -11,4 +11,5 @@ export default {
   '_ must have at least _ letters.': '{0} deve ter pelo menos {1} letras.',
   'Passwords must be identical.': 'As senhas devem ser idênticas.',
   Dashboard: 'Painel',
+  "new-alert": "Nova notificação"
 }
