@@ -56,10 +56,9 @@ export default {
       if (this.newPassword !== this.newPasswordAgain) {
         return;
       }
-      const data = { oldPassword: this.paszsword, password: this.newPassword }
+      const data = { oldPassword: this.password, password: this.newPassword }
       this.$store.dispatch('user/changePassword', data)
     },
   },
 }
 </script>
-  
