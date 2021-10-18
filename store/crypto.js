@@ -22,21 +22,20 @@ export const mutations = {
 
 export const actions = {
   getResults({ commit }, params = {}) {
-    const response = this.$axios.get(`/cryptocoins/${params?.wallet}`, {
-      params,
-    })
+    const config = {
+      headers: { 'walletid': params.wallet }
+    }
+    const response = this.$axios.get(`/cryptocoins`, config)
     response.then(({ data }) => {
       commit('setResults', data.cryptos)
     })
     return response
   },
   getReadCryptoConsolidated({ commit }, params = {}) {
-    const response = this.$axios.get(
-      `/cryptocoins/consolidated/${params?.wallet}`,
-      {
-        params,
-      }
-    )
+    const config = {
+      headers: { 'walletid': params.wallet }
+    }
+    const response = this.$axios.get(`/cryptocoins/consolidated`, config)
     response.then(({ data }) => {
       commit('setReadCryptoConsolidated', data)
     })
@@ -52,7 +51,10 @@ export const actions = {
     return response
   },
   create({ commit, dispatch }, data) {
-    const response = this.$axios.post(`/cryptocoins`, data)
+    const config = {
+      headers: { 'walletid': data.walletId }
+    }
+    const response = this.$axios.post(`/cryptocoins`, config)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
       dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
@@ -68,10 +70,10 @@ export const actions = {
     return response
   },
   update({ commit, dispatch }, data) {
-    const response = this.$axios.put(
-      `/cryptocoins/${data.walletId}/${data._id}`,
-      data
-    )
+    const config = {
+      headers: { 'walletid': data.walletId }
+    }
+    const response = this.$axios.put(`/cryptocoins/${data._id}`, config)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
       dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
@@ -79,7 +81,10 @@ export const actions = {
     return response
   },
   delete({ commit, dispatch }, data) {
-    const response = this.$axios.delete(`/cryptocoins/${data.walletId}/${data._id}`)
+    const config = {
+      headers: { 'walletid': data.walletId }
+    }
+    const response = this.$axios.delete(`/cryptocoins/${data._id}`, config)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
       dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
