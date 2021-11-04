@@ -31,7 +31,7 @@ export const actions = {
     const config = {
       headers: { 'walletid': data.walletId }
     }
-    const response = this.$axios.post(`/stocks`, config)
+    const response = this.$axios.post(`/stocks`,data, config)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
       dispatch('getReadStockConsolidated', { wallet: data.walletId })

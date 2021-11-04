@@ -54,7 +54,7 @@ export const actions = {
     const config = {
       headers: { 'walletid': data.walletId }
     }
-    const response = this.$axios.post(`/cryptocoins`, config)
+    const response = this.$axios.post(`/cryptocoins`,data,  config)
     response.then(({ data }) => {
       dispatch('getResults', { wallet: data.walletId })
       dispatch('getReadCryptoConsolidated', { wallet: data.walletId })
